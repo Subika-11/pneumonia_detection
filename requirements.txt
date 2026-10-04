@@ -1,0 +1,16 @@
+# Core Deep Learning & Scientific Computing
+torch>=2.5.0
+torchvision>=0.20.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+
+# Medical Imaging & Image Processing
+pydicom>=3.0.0
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Visualization & Progress
+matplotlib>=3.7.0
+tqdm>=4.65.0

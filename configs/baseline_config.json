@@ -1,0 +1,38 @@
+{
+    "experiment_name": "densenet121_rsna_pneumonia_baseline",
+    "model_architecture": "densenet121",
+    "pretrained": true,
+    "image_size": [224, 224],
+    "batch_size": 32,
+    "num_workers": 4,
+    "stage1": {
+        "description": "Feature extraction (frozen backbone, training classification head)",
+        "epochs": 3,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+    },
+    "stage2": {
+        "description": "Full backbone fine-tuning at lower learning rate",
+        "epochs": 5,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+    },
+    "loss": {
+        "type": "BCEWithLogitsLoss",
+        "pos_weight": 3.14,
+        "explanation": "Calculated from negative-to-positive ratio in train partition (18012 / 5734 = 3.1415)"
+    },
+    "lr_scheduler": {
+        "type": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 1,
+        "min_lr": 1e-6
+    },
+    "early_stopping": {
+        "metric": "roc_auc",
+        "mode": "max",
+        "patience": 3
+    },
+    "seed": 42
+}
